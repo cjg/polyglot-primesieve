@@ -3,7 +3,8 @@
 #include <stdlib.h>
 #include <time.h>
 
-int countPrimes(int n) {
+int countPrimes(int n)
+{
 	char *primeNumbers = malloc(n);
 	int i, j, c;
 	for (i = 0; i < n; i++) {
@@ -11,7 +12,7 @@ int countPrimes(int n) {
 	}
 	primeNumbers[0] = 0;
 	primeNumbers[1] = 0;
-	int last = (int) sqrt((double) n);
+	int last = (int)sqrt((double)n);
 	for (i = 2; i < last; i++) {
 		if (!primeNumbers[i]) {
 			continue;
@@ -30,22 +31,26 @@ int countPrimes(int n) {
 	return c;
 }
 
-int main() {
+int main()
+{
 	int i, n;
 	clock_t start, end;
 	double min, max, total, avg;
 	double *durations = malloc(sizeof(double) * 100);
-	
-	for (i = 0; i < 100; i++) {	
+
+	for (i = 0; i < 100; i++) {
 		start = clock();
 		n = countPrimes(1000000);
 		end = clock();
 		if (n != 78498) {
-			fprintf(stderr, "found %d instead of 78498 prime numbers\n", n);
+			fprintf(stderr,
+				"found %d instead of 78498 prime numbers\n", n);
 			return -1;
 		}
-		durations[i] = ((double) (end - start)) / (CLOCKS_PER_SEC / 1000.0);
-		printf("Iteration %3d completed in %0.2lfms\n", i, durations[i]);
+		durations[i] =
+		    ((double)(end - start)) / (CLOCKS_PER_SEC / 1000.0);
+		printf("Iteration %3d completed in %0.2lfms\n", i,
+		       durations[i]);
 	}
 
 	max = durations[0];
@@ -64,6 +69,7 @@ int main() {
 	}
 	avg = total / 100.0;
 	free(durations);
-	printf("%d iterations completed in %0.2lfs, min: %0.2lfms max: %0.2lfms average: %0.2lfms\n",
-			100, total / 1000, min, max, avg);
+	printf
+	    ("%d iterations completed in %0.2lfs, min: %0.2lfms max: %0.2lfms average: %0.2lfms\n",
+	     100, total / 1000, min, max, avg);
 }
