@@ -58,5 +58,5 @@ int main() {
 	auto avg = total / static_cast<double>(durations.size());
 
 	std::cout << durations.size() << " iterations completed in " << (total / 1000.0) << "s, min: " << 
-		min << "ms max: " << max << "ms avg: " << avg << "ms" << std::endl; 
+		min << "ms max: " << max << "ms average: " << avg << "ms" << std::endl; 
 }
